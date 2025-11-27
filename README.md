@@ -39,8 +39,8 @@ public class cohesionQuest {
 
     static class Enemy {
         final String kind;
-        int health =
-        int damage;
+        int health = 3;
+        int damage = 2;
 
         Enemy(String kind) {
             this(kind, 3, 2);
@@ -78,7 +78,7 @@ public class cohesionQuest {
         @Override
         void enter(Game game) {
             Player p = game.player;
-            String[] foeTypes = {"Gloomy Virus", "Deep Sea Worm", "Microscopic Shark"};
+            String[] foeTypes = {"Gloomy Virus" , "Deep Sea Worm", "Microscopic Shark"};
 
             System.out.println("You wake up alone at the bottom of the ocean.");
             System.out.println("There is nothing around you except for a shimmering bubble.");
@@ -148,23 +148,7 @@ public class cohesionQuest {
                 p.addItem("Protocell Artifact");
                 System.out.println("[Archie] Good luck, " + p.name + "!");
                 System.out.println("Chaekin descends down towards you...\n");
-                int chaekinHealth = 30;
-                while (chaekinHealth > 0) {
-                    String chaekinChoice = game.makeChoice("Attack or defend?", new String[]{"a", "d"});
-                    if (chaekinChoice.equals("a")) {
-                        System.out.println("You slash the Chaekin with the power of burning hot bubbles!");
-                        chaekinHealth = chaekinHealth -  6;
-                        System.out.println("Chaekin loses 6 health points, leaving " + chaekinHealth + "health points.");
-                        System.out.println("Chaekin lunges towards you, absorbing your life force.");
-                        p.health = p.health - 2;
-                        System.out.println("You lose 2 health points, leaving " + p.health + "health points.");
-                    }
-                    else {
-                        System.out.println("Chaekin tried to attack you but you dodged him.");
-                    }
-
-                }
-
+                game.encounterEnemy("Chaekin");
             }
         }
     }
@@ -222,41 +206,90 @@ public class cohesionQuest {
             while (true) {
                 String garbageLabyrinth = game.makeChoice("Turn left or turn right?", new String[]{"l", "r"});
                 if  (garbageLabyrinth.equals("l")) {
+                    if (game.rng.nextDouble() < 0.5) {
+                        game.encounterEnemy(foeTypes[game.rng.nextInt(foeTypes.length)]);
+                        if (shoreChallenge) {
+                            shoreFoes = shoreFoes - 1;
+                            System.out.println("Creatures needed to be defeated: " + shoreFoes);
+                            if (shoreFoes == 0);
+                            System.out.println("You return back to the castle and tell a guard of your accomplishment.");
+                            System.out.println("They let you in and bring you to the Queen.");
+                            System.out.println("[Queen Eubacteria] Very good! Very good! Guards, bring in the reward.");
+                            System.out.println("[Queen Eubacteria] Here is the Shell Scythe.");
+                            p.addItem("shell");
+                            p.addWeapon("Shell Scythe");
+                            System.out.println("[Queen Eubacteria] It was created by my father, King Eubacteria.");
+                            System.out.println("[Queen Eubacteria] He used it to fight off horrible creatures in the Shore War.");
+                            System.out.println("[Queen Eubacteria] They could fly around and dodge almost anything.");
+                            System.out.println("[Queen Eubacteria] We call them flies.");
+                            System.out.println("[Queen Eubacteria] The flies almost ate all of our trash before my father and his army defeated them.");
+                            System.out.println("[Queen Eubacteria] No one knows much about flies. They surely aren't bacteria.");
+                            System.out.println("[Queen Eubacteria] I'm sure you can figure that out, " + p.name + ".");
+                            System.out.println("[Queen Eubacteria] Now leave.");
+                            System.out.println("The Queen points to the exit and you leave.");
+                            System.out.println("You return back to the garbage wastes and adventure more.");
+                        }
+                    } else {
+                        if (!p.has("key")) {
+                            System.out.println("You see a rusty key in a pile of trash and pick it up.");
+                            p.addItem("key");
+                        } else {
+                            System.out.println("There is a plastic spoon on the ground.");
+                            System.out.println("You greet the plastic spoon.");
+                        }
 
+                    }
+
+                } else {
+                    if (game.rng.nextDouble() < 0.5) {
+                        game.encounterEnemy(foeTypes[game.rng.nextInt(foeTypes.length)]);
+                        if (shoreChallenge) {
+                            shoreFoes = shoreFoes - 1;
+                            System.out.println("Creatures needed to be defeated: " + shoreFoes);
+                            if (shoreFoes == 0);
+                            System.out.println("You return back to the castle and tell a guard of your accomplishment.");
+                            System.out.println("They let you in and bring you to the Queen.");
+                            System.out.println("[Queen Eubacteria] Very good! Very good! Guards, bring in the reward.");
+                            System.out.println("[Queen Eubacteria] Here is the Shell Scythe.");
+                            p.addItem("shell");
+                            p.addWeapon("Shell Scythe");
+                            System.out.println("[Queen Eubacteria] It was created by my father, King Eubacteria.");
+                            System.out.println("[Queen Eubacteria] He used it to fight off horrible creatures in the Shore War.");
+                            System.out.println("[Queen Eubacteria] They could fly around and dodge almost anything.");
+                            System.out.println("[Queen Eubacteria] We call them flies.");
+                            System.out.println("[Queen Eubacteria] The flies almost ate all of our trash before my father and his army defeated them.");
+                            System.out.println("[Queen Eubacteria] No one knows much about flies. They surely aren't bacteria.");
+                            System.out.println("[Queen Eubacteria] I'm sure you can figure that out, " + p.name + ".");
+                            System.out.println("[Queen Eubacteria] Now leave.");
+                            System.out.println("The Queen points to the exit and you leave.");
+                            System.out.println("You return back to the garbage wastes and adventure more.");
+                        }
+                    } else {
+                        if (game.rng.nextDouble() < 0.5) {
+                            System.out.println("You see a giant wall of garbage towering above you.");
+                            System.out.println("There is a small keyhole in the trash.");
+                            if (p.has("key")) {
+                                String keyUse = game.makeChoice("Do you want to use the key you found? You may not be able to turn back.", new String[]{"y", "n"});
+                                if (keyUse.equals("y")) {
+                                    System.out.println("You put the key in the keyhole and turn it.");
+                                    System.out.println("A small opening in the garbage wall opens and you step through it.");
+                                    System.out.println("When you get to the other side, it closes back up.");
+                                    break;
+                                } else {System.out.println("You don't use the key.");}
+                            } else {System.out.println("If only you had a key...");}
+                        } else {
+                            if (!p.has("garbage")) {
+                                System.out.println("In a heap of garbage, you see something shimmering.");
+                                System.out.println("After digging though the trash, you find the Plastic Pike!");
+                                p.addItem("plastic");
+                                p.addWeapon("Plastic Pike");
+                            } else {
+                                System.out.println("There is a plastic fork on the ground.");
+                                System.out.println("You greet the plastic fork.");}
+                        }
+                        }
                 }
-                game.encounterEnemy(foeTypes[game.rng.nextInt(foeTypes.length)]);
-                if (shoreChallenge) {
 
-                    shoreFoes = shoreFoes - 1;
-                    System.out.println("Creatures needed to be defeated: " + shoreFoes);
-                    if (shoreFoes == 0);
-                        System.out.println("You return back to the castle and tell a guard of your accomplishment.");
-                        System.out.println("They let you in and bring you to the Queen.");
-                        System.out.println("[Queen Eubacteria] Very good! Very good! Guards, bring in the reward.");
-                        System.out.println("[Queen Eubacteria] Here is the Shell Scythe.");
-                        p.addItem("shell");
-                        p.addWeapon("Shell Scythe");
-                        System.out.println("[Queen Eubacteria] It was created by my father, King Eubacteria.");
-                        System.out.println("[Queen Eubacteria] He used it to fight off horrible creatures in the Shore War.");
-                        System.out.println("[Queen Eubacteria] They could fly around and dodge almost anything.");
-                        System.out.println("[Queen Eubacteria] We call them flies.");
-                        System.out.println("[Queen Eubacteria] The flies almost ate all of our trash before my father and his army defeated them.");
-                        System.out.println("[Queen Eubacteria] No one knows much about flies. They surely aren't bacteria.");
-                        System.out.println("[Queen Eubacteria] I'm sure you can figure that out, " + p.name + ".");
-                        System.out.println("[Queen Eubacteria] Now leave.");
-                        System.out.println("The Queen points to the exit and you leave.");
-                        System.out.println("You return back to the garbage wastes and adventure more.");
-
-
-                }
-                // new
-                if (!p.has("garbage")) {
-                    System.out.println("In a heap of garbage, you see something shimmering.");
-                    System.out.println("After digging though the trash, you find the Plastic Pike!");
-                    p.addItem("plastic");
-                    p.addWeapon("Plastic Pike");
-
-                }
             }
 
         }
@@ -366,13 +399,13 @@ public class cohesionQuest {
                         System.out.println("[Chlorm] He is a multicellular plant-like protist.");
                         System.out.println("[Chlorm] Maybe if you find him, he can help me, but I'm not too sure.");
                     }
-                System.out.println("[Chlorm] Anyways, thank you for speaking to me.");
-                System.out.println("[Chlorm] I know most would just leave a dying leaf like me alone, but you're different.");
-                System.out.println("[Chlorm] As my thanks, have this Sprout Slicer.");
-                p.addItem("sprout");
-                p.addWeapon("Sprout Slicer");
-                System.out.println("[Chlorm] It's a common tool in my village.");
-                System.out.println("[Chlorm] I'm sure it can aid you in your journey.\n");
+                    System.out.println("[Chlorm] Anyways, thank you for speaking to me.");
+                    System.out.println("[Chlorm] I know most would just leave a dying leaf like me alone, but you're different.");
+                    System.out.println("[Chlorm] As my thanks, have this Sprout Slicer.");
+                    p.addItem("sprout");
+                    p.addWeapon("Sprout Slicer");
+                    System.out.println("[Chlorm] It's a common tool in my village.");
+                    System.out.println("[Chlorm] I'm sure it can aid you in your journey.\n");
                 }
             } else {
                 System.out.println("[???] Hey!");
@@ -394,13 +427,16 @@ public class cohesionQuest {
             System.out.println("[Fungi-like Protist Protector] So it seems that you have reached the first trial!");
             System.out.println("[Fungi-like Protist Protector] Here is your first question:");
             System.out.println("[Fungi-like Protist Protector] What two kingdoms DON'T have organelles?");
+            String fungiQuestionOne = game.makeChoice("a. eubacteria and protista b. archaea and eubacteria c. archaea and protista ", new String[]{"a", "b", "c"});
             System.out.println("[Fungi-like Protist Protector] Alright... Now on for question two!!!");
             System.out.println("[Fungi-like Protist Protector] Which of these is found in every cell?");
+            String fungiQuestionTwo = game.makeChoice("a. cell wall b. nucleus c. cytoplasm ", new String[]{"a", "b", "c"});
             System.out.println("[Fungi-like Protist Protector] Finally...");
             System.out.println("[Fungi-like Protist Protector] What you have all been waiting for...");
             System.out.println("[Fungi-like Protist Protector] The third question!!!");
             System.out.println("A group of fungi-like protists come out of the statue and do a short dance.");
             System.out.println("[Fungi-like Protist Protector] What is my favorite food?");
+            String fungiQuestionThree = game.makeChoice("a. cookies b. pizza c. pasta ", new String[]{"a", "b", "c"});
             System.out.println("[Fungi-like Protist Protector] Okay... now to reveal if you passed the trial.");
             System.out.println("The fungi-like protists lean in closer, ready for the results.");
             System.out.println("[Fungi-like Protist Protector] Oooh. Too bad, buddy.");
@@ -408,11 +444,39 @@ public class cohesionQuest {
             System.out.println("[Fungi-like Protist Protector] Maybe you can search around the mountain for some answers.");
             System.out.println("The fungi-like protists all go back inside the statue and close the door.");
             int protogeeKick = 0;
+            boolean favoriteFood = false;
             while (true) {
                 String fungiLoopChoice = game.makeChoice("What do you want to do? a. Retry the trial. b. Look around for answers. ", new String[]{"a", "b"});
                 if (fungiLoopChoice.equals("a")) {
-                    //questions go here :)
-                break;
+                    System.out.println("The Fungi-Like Protist Protector comes out of the statue.");
+                    System.out.println("[Fungi-like Protist Protector] Let's do this!");
+                    System.out.println("[Fungi-like Protist Protector] Here is your first question:");
+                    System.out.println("[Fungi-like Protist Protector] What two kingdoms DON'T have organelles?");
+                    fungiQuestionOne = game.makeChoice("a. eubacteria and protista b. archaea and eubacteria c. archaea and protista ", new String[]{"a", "b", "c"});
+                    System.out.println("[Fungi-like Protist Protector] Alright... Now on for question two!!!");
+                    System.out.println("[Fungi-like Protist Protector] Which of these is found in every cell?");
+                    fungiQuestionTwo = game.makeChoice("a. cell wall b. nucleus c. cytoplasm ", new String[]{"a", "b", "c"});
+                    System.out.println("[Fungi-like Protist Protector] Finally...");
+                    System.out.println("[Fungi-like Protist Protector] What you have all been waiting for...");
+                    System.out.println("[Fungi-like Protist Protector] The third question!!!");
+                    System.out.println("A group of fungi-like protists come out of the statue and do a short dance.");
+                    System.out.println("[Fungi-like Protist Protector] What is my favorite food?");
+                    if (favoriteFood) {
+                        fungiQuestionThree = game.makeChoice("a. cookies b. pizza c. pasta d. homemade bark-bites", new String[]{"a", "b", "c", "d"});
+                    } else {
+                        fungiQuestionThree = game.makeChoice("a. cookies b. pizza c. pasta ", new String[]{"a", "b", "c"});
+                    }
+                    System.out.println("[Fungi-like Protist Protector] Okay... now to reveal if you passed the trial.");
+                    System.out.println("The fungi-like protists lean in closer, ready for the results.");
+                    if (fungiQuestionOne.equals("b") && fungiQuestionTwo.equals("c") && fungiQuestionThree.equals("d")) {
+                        System.out.println("[Fungi-like Protist Protector] Yes! You passed!");
+                        break;
+                    } else {
+                        System.out.println("[Fungi-like Protist Protector] Oooh. Too bad, buddy.");
+                        System.out.println("[Fungi-like Protist Protector] You didn't get all of the questions correct, but don't give up!");
+                        System.out.println("[Fungi-like Protist Protector] Maybe you can search around the mountain for some answers.");
+                        System.out.println("The fungi-like protists all go back inside the statue and close the door.");
+                    }
                 } else {
                     System.out.println("You look around and see two cells roaming around.");
                     String fungiInvestigateChoice = game.makeChoice("a. Talk to fungi-like protist b. Talk to animal-like protist ", new String[]{"a", "b"});
@@ -430,6 +494,7 @@ public class cohesionQuest {
                         System.out.println("[Old Protee] Here, you can have one if you like.");
                         p.addItem("bark-bite");
                         System.out.println("[Old Protee] Bye-Bye!");
+                        favoriteFood = true;
 
                     } else {
                         System.out.println("You go up to the smart looking animal-like protist.");
@@ -644,7 +709,9 @@ public class cohesionQuest {
             System.out.println("[Algania] Algreeg said he was going to pass the trials and go to see real plants.");
             System.out.println("[Algania] I bet where real plants live is beautiful!");
             System.out.println("[Algania] Have you seen him during your adventure?");
-            System.out.println("You tell her that you have not seem Algreeg,");
+            System.out.println("You tell her that you have not seem Algreeg.");
+            System.out.println("[Algania] Well, I bet that you'll see him soon, then!");
+
 
         }
     }
@@ -679,9 +746,7 @@ public class cohesionQuest {
         final Random rng = new Random();
         Player player;
 
-        final List<Scene> availableScenes = Arrays.asList(
-                new Ocean()
-        );
+        final List<Scene> availableScenes = Arrays.asList(new Ocean(), new Shore(), new Mountain());
         final Scene finalScene = new Nucleus();
 
         String makeChoice(String prompt, String[] options) {
@@ -724,23 +789,15 @@ public class cohesionQuest {
                 if (action.equals("f")) {
                     if (p.has("bubble")) {
                         System.out.println("You slash the " + enemy.kind + " with the power of burning hot bubbles!");
-                        foeHealth = foeHealth - 5;
-                        System.out.println("The " + enemy.kind + " loses 5 health points! Only " + foeHealth + " health points remain!");
-                        System.out.println("The " + enemy.kind + " attacks you!");
-                        p.losehp(2);
+                        break;
+
                     } else if (p.has("garbage")) {
                         System.out.println("You slash the " + enemy.kind + " with the power of pungent garbage!");
-                        foeHealth = foeHealth - 5;
-                        System.out.println("The " + enemy.kind + " loses 5 health points! Only " + foeHealth + " health points remain!");
-                        System.out.println("The " + enemy.kind + " attacks you!");
-                        p.losehp(2);
+                        break;
 
                     } else if (p.has("plastic")) {
                         System.out.println("You slash the " + enemy.kind + " with the power of sharp plastic!");
-                        foeHealth = foeHealth - 5;
-                        System.out.println("The " + enemy.kind + " loses 5 health points! Only " + foeHealth + " health points remain!");
-                        System.out.println("The " + enemy.kind + " attacks you!");
-                        p.losehp(2);
+                        break;
                     } else {
                         System.out.println("You tried to fight, but you didn't have a weapon!");
                         System.out.println("The " + enemy.kind + " attacks you as it flees!");
@@ -754,9 +811,9 @@ public class cohesionQuest {
                         System.out.println("You tried to defend yourself, but you failed!");
                         p.losehp(2);
                     }
-                if (foeHealth < 0); {
-                    System.out.println("The " + enemy.kind + " has been defeated!\n");
-                    break;
+                    if (foeHealth < 0); {
+                        System.out.println("The " + enemy.kind + " has been defeated!\n");
+                        break;
                     }
 
                 }
@@ -768,7 +825,7 @@ public class cohesionQuest {
                 startGame();
 
                 List<Scene> path = new ArrayList<>(availableScenes);
-                Collections.shuffle(path, rng);
+
 
                 for (Scene scene : path) {
                     scene.enter(this);
