@@ -1,5 +1,5 @@
 import java.util.*;
-
+import java.util.Scanner;
 
 
 public class cohesionQuest {
@@ -287,7 +287,7 @@ public class cohesionQuest {
                                 System.out.println("There is a plastic fork on the ground.");
                                 System.out.println("You greet the plastic fork.");}
                         }
-                        }
+                    }
                 }
 
             }
@@ -709,13 +709,226 @@ public class cohesionQuest {
             System.out.println("[Algania] Algreeg said he was going to pass the trials and go to see real plants.");
             System.out.println("[Algania] I bet where real plants live is beautiful!");
             System.out.println("[Algania] Have you seen him during your adventure?");
-            System.out.println("You tell her that you have not seem Algreeg.");
+            System.out.println("You tell her that you have not seen Algreeg.");
             System.out.println("[Algania] Well, I bet that you'll see him soon, then!");
+            System.out.println("[Albert] If you see my son, tell him that we hope he comes back soon.");
+            System.out.println("[Albert] Oh! I have something you can give to him.");
+            System.out.println("Albert gives you a green bubble.");
+            System.out.println("[Albert] This is an Algae Bubble.");
+            System.out.println("[Albert] It uses algae power to contain sound.");
+            System.out.println("[Albert] When you pop it, you can hear the message put in to it.");
+            System.out.println("[Albert] Thank you. Good luck on your journey!");
+            System.out.println("When you get out of the water, the cold shocks you.");
+            System.out.println("Something falls from the sky and attacks you!");
+            game.encounterEnemy(foeTypes[game.rng.nextInt(foeTypes.length)]);
+            System.out.println("You keep on climbing...");
+            System.out.println("At last, you have reached the Protista Peak.");
+            System.out.println("In the distance you can see the Archaean Ocean, Bacteria Shore, and a vast field of mushrooms.");
+            System.out.println("In front of you is a large statue of a chicken. It is glowing brightly.");
+            System.out.println("You go up to it and touch the statue.");
+            System.out.println("The beak starts to open and the Animal-Like Protist Protector jumps comes out.");
+            System.out.println("[Animal-like Protist Protector] You have proven that you are very strong already.");
+            System.out.println("[Animal-like Protist Protector] Now we will see if you are worthy.");
+            System.out.println("[Animal-like Protist Protector] This is a trial of perseverance.");
+            System.out.println("[Animal-like Protist Protector] I have seen many travelers get to here, but very few pass it.");
+            System.out.println("[Animal-like Protist Protector] You must defeat 5 protists in a row.");
+            System.out.println("[Animal-like Protist Protector] Defeating one is easy, but 5...");
+            System.out.println("[Animal-like Protist Protector] It takes perseverance.");
+            System.out.println("[Animal-like Protist Protector] Let us begin.");
+            System.out.println("5 protists jump out of the chicken's beak.");
+            game.encounterEnemy(foeTypes[game.rng.nextInt(foeTypes.length)]);
+            System.out.println("[Animal-like Protist Protector] A good start...");
+            game.encounterEnemy(foeTypes[game.rng.nextInt(foeTypes.length)]);
+            System.out.println("[Animal-like Protist Protector] Keep the good work going...");
+            game.encounterEnemy(foeTypes[game.rng.nextInt(foeTypes.length)]);
+            System.out.println("[Animal-like Protist Protector] Over half way done...");
+            game.encounterEnemy(foeTypes[game.rng.nextInt(foeTypes.length)]);
+            System.out.println("[Animal-like Protist Protector] Don't give up...");
+            game.encounterEnemy(foeTypes[game.rng.nextInt(foeTypes.length)]);
+            System.out.println("[Animal-like Protist Protector] Very good!");
+            System.out.println("[Animal-like Protist Protector] You are certainly worthy.");
+            System.out.println("[Animal-like Protist Protector] The complexer eukaryotes will welcome you.");
+            System.out.println("[Animal-like Protist Protector] Now, follow me.");
+            System.out.println("You both go inside the beak of the chicken statue.");
+            System.out.println("Inside, there is a staircase going down.");
+            System.out.println("[Animal-like Protist Protector] At the bottom of these stairs, there is an elevator.");
+            System.out.println("[Animal-like Protist Protector] A protist fighter will lower you down to the bottom of the mountain.");
+            System.out.println("[Animal-like Protist Protector] From there, you will be on the other side of the mountain.");
+            System.out.println("[Animal-like Protist Protector] You will reach the Fungi Fields.");
+            System.out.println("All of the Protist Protectors come up to you.");
+            System.out.println("[All Protist Protectors] Good luck!");
+            System.out.println("You go down the stairs and hop inside the elevator.");
+            System.out.println("You descend to the bottom of the mountain.");
+            System.out.println("At the bottom, you see a hole in the inner mountain. It is very bright.");
+            System.out.println("You walk through it in to the Fungi Fields.");
+
+
+
 
 
         }
     }
 
+    static class Field extends Scene {
+        Field() {
+            super("Field");
+        }
+
+        @Override
+        void enter(Game game) {
+            Player p = game.player;
+            String[] foeTypes = {"Shroomy Virus" , "Spore Cloud", "Mycelium Monster", "Moldy Monster"};
+
+            System.out.println("After walking for a while, you realize that you are lost.");
+            System.out.println("All of the mushrooms look the same!");
+            System.out.println("Then, from behind a shroom, you see something...");
+            game.encounterEnemy(foeTypes[game.rng.nextInt(foeTypes.length)]);
+            System.out.println("That was unlucky.");
+            System.out.println("Then, from behind another shroom, you see someone...");
+            System.out.println("[Mushy] Hi, friend! My name is Mushy!");
+            System.out.println("[Mushy] Are you lost? You seem very lost.");
+            System.out.println("[Mushy] Don't worry, for I know this place inside and out!");
+            System.out.println("Mushy starts guiding the way and you follow.");
+            System.out.println("[Mushy] You clearly aren't a fungi cell like me.");
+            System.out.println("[Mushy] I bet you came from that mountain over there.");
+            System.out.println("[Mushy] They're pretty dumb with their trials and all.");
+            System.out.println("[Mushy] I don't see why they need them.");
+            System.out.println("[Mushy] Anyways, I'm bringing you to my home.");
+            System.out.println("[Mushy] Most fungi don't have homes. We just eat stuff and wander around through the fields.");
+            System.out.println("[Mushy] The place we're going to is the Mushroom Market.");
+            System.out.println("[Mushy] I spend a lot of time there.");
+            System.out.println("[Mushy] If you're trying to find adventure, it's the place.");
+            System.out.println("[Mushy] Wait what's that?");
+            game.encounterEnemy(foeTypes[game.rng.nextInt(foeTypes.length)]);
+            System.out.println("[Mushy] You saved me!");
+            System.out.println("[Mushy] For doing that, here's 5 Sporebucks.");
+            System.out.println("[Mushy] You don't know what Sporebucks are?");
+            System.out.println("[Mushy] Sporebucks is the currency in the Mushroom Market.");
+            System.out.println("[Mushy] There are games you can play to get more.");
+            System.out.println("[Mushy] With Sporebucks you can get a lot of things.");
+            System.out.println("[Mushy] The biggest prize is a ticket in to the Grand Shroom Chamber.");
+            System.out.println("[Mushy] Inside there is the Grand Shroom.");
+            System.out.println("[Mushy] He is the oldest mushroom around.");
+            System.out.println("[Mushy] He has connection to like everywhere through mycelium!");
+            System.out.println("[Mushy] Maybe he can help you with your journey.");
+            System.out.println("You and Mushy eventually arrive at the Mushroom Market.");
+            int sporebucks = 5;
+            System.out.println("So there was going to be like games and stuff but I cou;d pn;y get one done so its gone now");
+            System.out.println("Pretend you got enough Sporebucks to meet that bug mushroom guy and get transported to the plant area.");
+            System.out.println("Bye");
+            
+                     
+        }
+    }
+    static class Stump extends Scene {
+        Stump() {
+            super("Stump");
+        }
+
+        @Override
+        void enter(Game game) {
+            Player p = game.player;
+            System.out.println("You wake up in a small village.");
+            System.out.println("There are plants everywhere and the village is surrounded by a wooden wall.");
+            System.out.println("You go in to town and meet a plant scientist.");
+            System.out.println("[Petalologist] Quick! Quick! You need to help us!");
+            System.out.println("[Petalologist] An animal has attacked our plant village and destroyed the Great Chloroplast!");
+            System.out.println("[Petalologist] Without it, the village has no power.");
+            System.out.println("[Petalologist] We won't survive!");
+            System.out.println("He takes you to the Great Nucleus.");
+            System.out.println("There, the head scientist explains the problem.");
+            System.out.println("[Head Scientist Leafbo] Hello, I am Head Scientist Leafbo.");
+            System.out.println("[Head Scientist Leafbo] Last night, a horrible creature known as a rabbit crashed in to the village. ");
+            System.out.println("[Head Scientist Leafbo] The Great Nucleus consists of two parts: the Chlorometer and the Nucloizer 2000.");
+            System.out.println("[Head Scientist Leafbo] The Chlorometer acts like a chloroplast and takes in carbon dioxide and water and turns it into glucose and oxygen.");
+            System.out.println("[Head Scientist Leafbo] The Nucloizer 200 acts like a nucleus and takes in glucose and oxygen and turns it in to water, carbon dioxide and ATP energy.");
+            System.out.println("[Head Scientist Leafbo] Unfortunately, the materials got messed up and no one remembers how to construct them!");
+            System.out.println("[Head Scientist Leafbo] I bet you know, though.");
+            System.out.println("[Head Scientist Leafbo] We will start the machine and you just tell us what to put in.");
+            while (true) {
+                System.out.println("[Head Scientist Leafbo] First, let's make a single carbon dioxide molecule.");
+                String greatNucleus1 = game.makeChoice("a. C2O b. CO2 c. H2O ", new String[]{"a", "b", "c"});
+                if  (greatNucleus1.equals("b")) {
+                    System.out.println("[Head Scientist Leafbo] That's it! CO2 is running.");
+                    break;
+                }
+                else {System.out.println("[Head Scientist Leafbo] Oh that's not it! We need to start again.");}
+            }
+            while (true) {
+                System.out.println("[Head Scientist Leafbo] Next, let's make a single water molecule.");
+                String greatNucleus2 = game.makeChoice("a. HO2 b. O2 c. H2O ", new String[]{"a", "b", "c"});
+                if  (greatNucleus2.equals("c")) {
+                    System.out.println("[Head Scientist Leafbo] That's it! H20 is running.");
+                    break;
+                }
+                else {System.out.println("[Head Scientist Leafbo] Oh that's not it! We need to start again.");}
+            }
+            while (true) {
+                System.out.println("[Head Scientist Leafbo] Next, let's make a single glucose molecule.");
+                String greatNucleus3 = game.makeChoice("a. C6H12O6 b. C12H6O6 c. C6H6O12 ", new String[]{"a", "b", "c"});
+                if  (greatNucleus3.equals("a")) {
+                    System.out.println("[Head Scientist Leafbo] That's it! C6H12O6 is running.");
+                    break;
+                }
+                else {System.out.println("[Head Scientist Leafbo] Oh that's not it! We need to start again.");}
+            }
+            while (true) {
+                System.out.println("[Head Scientist Leafbo] Finally, let's make a single oxygen molecule.");
+                String greatNucleus4 = game.makeChoice("a. O2 b. 2O c. O6 ", new String[]{"a", "b", "c"});
+                if  (greatNucleus4.equals("a")) {
+                    System.out.println("[Head Scientist Leafbo] That's it! O2 is running.");
+                    break;
+                }
+                else {System.out.println("[Head Scientist Leafbo] Oh that's not it! We need to start again.");}
+            }
+            while (true) {
+                System.out.println("[Head Scientist Leafbo] Now, how many water molecules go in to the Chlorometer?");
+                String greatNucleus5 = game.makeChoice("a. 1 b. 12 c. 6 ", new String[]{"a", "b", "c"});
+                if  (greatNucleus5.equals("c")) {
+                    System.out.println("[Head Scientist Leafbo] That's it! Sending in 6.");
+                    break;
+                }
+                else {System.out.println("[Head Scientist Leafbo] Oh that's not it! We need to start again.");}
+            }
+            while (true) {
+                System.out.println("[Head Scientist Leafbo] Now, how many carbon dioxide molecules go in to the Chlorometer?");
+                String greatNucleus6 = game.makeChoice("a. 6 b. 3 c. 2 ", new String[]{"a", "b", "c"});
+                if  (greatNucleus6.equals("a")) {
+                    System.out.println("[Head Scientist Leafbo] That's it! Sending in 6.");
+                    break;
+                }
+                else {System.out.println("[Head Scientist Leafbo] Oh that's not it! We need to start again.");}
+            }
+            while (true) {
+                System.out.println("[Head Scientist Leafbo] Now, how many glucose molecules go in to the Nucloizer 2000?");
+                String greatNucleus7 = game.makeChoice("a. 6 b. 1 c. 12 ", new String[]{"a", "b", "c"});
+                if  (greatNucleus7.equals("b")) {
+                    System.out.println("[Head Scientist Leafbo] That's it! Sending in 1.");
+                    break;
+                }
+                else {System.out.println("[Head Scientist Leafbo] Oh that's not it! We need to start again.");}
+            }
+            while (true) {
+                System.out.println("[Head Scientist Leafbo] Finally, how many oxygen molecules go in to the Nucloizer 2000?");
+                String greatNucleus8 = game.makeChoice("a. 6 b. 2 c. 4 ", new String[]{"a", "b", "c"});
+                if  (greatNucleus8.equals("a")) {
+                    System.out.println("[Head Scientist Leafbo] That's it! Sending in 6.");
+                    break;
+                }
+                else {System.out.println("[Head Scientist Leafbo] Oh that's not it! We need to start again.");}
+            }
+            System.out.println("[Head Scientist Leafbo] We did it! The cycle is flowing again.");
+            System.out.println("[Head Scientist Leafbo] I will call the mayor to get here right away!");
+            System.out.println("The mayor is in water in a cart. He is being moved in my plantae agents.");
+            System.out.println("[Mayor Algreeg] I am mayor Algreeg and I want to thank you for you efforts.");
+            System.out.println("You tell Algreeg about his family.");
+            System.out.println("[Mayor Algreeg] I thought they were following me! I will send someone to get them right away!");
+            if (p.has("slicer")) {
+                System.out.println("Pretend you got enough Sporebucks to meet that bug mushroom guy and get transported to the plant area.");
+            }
+
+        }
+    }
 
     static class Nucleus extends Scene {
         Nucleus() {
@@ -805,16 +1018,9 @@ public class cohesionQuest {
                         break;
                     }
                 } else {
-                    if (Math.random() * (10) + 1 > 3) {
-                        System.out.println("It was close, but you dodged the enemy's attack successfully!");
-                    } else {
-                        System.out.println("You tried to defend yourself, but you failed!");
-                        p.losehp(2);
-                    }
-                    if (foeHealth < 0); {
-                        System.out.println("The " + enemy.kind + " has been defeated!\n");
-                        break;
-                    }
+                    System.out.println("The " + enemy.kind + " flees!");
+
+                    break;
 
                 }
             }
